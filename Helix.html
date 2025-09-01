@@ -7,170 +7,131 @@
   <title>Parallel Threads</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" />
 
-  <!-- 封面圖片 -->
-  <!-- <meta property="og:image" content="https://nine9.jic-tools.com.tw/themes/nine9/images/logo.png" />
-  <meta name="twitter:image" content="https://nine9.jic-tools.com.tw/themes/nine9/images/logo.pngg" /> -->
-
   <style>
     textarea {
-      height: 400px;
+      height: 400px
     }
 
     .muted {
       font-size: .9rem;
-      color: #6c757d;
+      color: #6c757d
     }
 
-    /* .sticky-actions {
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-    } */
-
-    /* 原本那段可以刪掉或取消 sticky
-.sticky-actions { position: sticky; top: 12px; z-index: 10; }
-*/
-
-    @media (min-width: 992px) {
-
-      /* 只在電腦版固定 */
+    @media (min-width:992px) {
       .right-pane-sticky {
         position: sticky;
         top: 12px;
-        /* 距離視窗頂端 12px，可自行調整 */
-        z-index: 10;
+        z-index: 10
       }
     }
 
-
-
-    /* 基本 placeholder 顏色 */
+    /* fz 亮暗提醒 */
     #fz::placeholder,
     #fz::-webkit-input-placeholder,
     #fz::-moz-placeholder,
     #fz:-ms-input-placeholder {
       color: rgba(13, 110, 253, .35);
-      transition: color .2s ease;
+      transition: color .2s ease
     }
 
-    /* .blink 狀態下讓 placeholder 變亮，並加淡藍光暈 */
     #fz.blink::placeholder,
     #fz.blink::-webkit-input-placeholder,
     #fz.blink::-moz-placeholder,
     #fz.blink:-ms-input-placeholder {
-      color: #0d6efd;
+      color: #0d6efd
     }
 
     #fz.blink {
-      box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .15);
+      box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .15)
     }
 
-
-    /* CE的部分 */
+    /* Clear 按鈕 */
     .btn-ce {
       background: #eaffea;
-      /* 淡綠底 */
       border: 1px solid #28a745;
-      /* 綠框 */
       color: #28a745;
-      /* 綠字 */
       font-weight: 700;
       padding: .125rem .5rem;
-      border-radius: .35rem;
+      border-radius: .35rem
     }
 
-    /* ===== Footer Style ===== */
+    /* Footer */
     .site-footer {
       background: #3f474b;
-      /* 深灰底，接近截圖 */
-      color: #e9ecef;
+      color: #e9ecef
     }
 
     .site-footer .footer-topbar {
       height: 10px;
-      background: #c7c7c7;
-      /* 頂部淺灰分隔帶 */
+      background: #c7c7c7
     }
 
     .site-footer a {
-      color: #e9f2ff;
+      color: #e9f2ff
     }
 
     .site-footer a:hover {
-      text-decoration: underline;
+      text-decoration: underline
     }
-
-    /* .footer-logo {
-      height: 38px;
-    } */
 
     .footer-logo {
       height: 72px;
+      display: block;
+      margin-inline: auto
     }
 
-    /* 調大：可改 64~80px 視覺試到好 */
-    @media (min-width: 1200px) {
+    @media (min-width:1200px) {
       .footer-logo {
-        height: 80px;
+        height: 80px
       }
-
-      /* 大螢幕再稍微放大 */
     }
 
+    .badge-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .35rem .5rem;
+      justify-content: center
+    }
 
     .badge-row img {
-      height: 48px;
-      margin-right: .35rem;
+      height: 48px
     }
 
     .duns-img {
       height: 60px;
-    }
-
-    .footer-sec-title {
-      font-size: .95rem;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      opacity: .9;
+      max-width: 100%
     }
 
     .footer-underline {
       height: 2px;
       width: 100%;
       background: rgba(255, 255, 255, .35);
-      margin: .4rem 0 1rem;
+      margin: .4rem 0 1rem
     }
 
-    /* RWD 微調：小螢幕置中、間距放大 */
-    @media (max-width: 991.98px) {
-      .site-footer .col-lg-4 {
-        text-align: center;
+    @media (max-width:991.98px) {
+      .site-footer .row>[class*="col-"] {
+        text-align: center
       }
     }
   </style>
-
-
-
-
 </head>
 
 <body>
   <div class="container my-3">
     <h1 class="mb-4 my-3 d-flex align-items-center">
       <img src="https://nine9.jic-tools.com.tw/themes/nine9/images/logo.png" alt="Logo" height="100"
-        style="margin-right: 10px;">
-
-      <!-- <strong class="fw-bold">NC Helix Drill Zigzag Method-G code Generator</strong>  -->
-      <strong class="fw-bold">NC Helix Drill </strong>
+        style="margin-right:10px;">
+      <strong class="fw-bold">NC Helix Drill</strong>
     </h1>
 
     <div class="row">
-      <!-- 左側：參數區 -->
+      <!-- 左：參數區 -->
       <div class="col-md-6">
         <div class="row g-3">
 
-
-          <!-- NEW：兩組 Part No. 選擇 -->
+          <!-- Part No. 區 -->
           <div class="col-12">
             <div class="card shadow-sm">
               <div class="card-body">
@@ -186,7 +147,7 @@
                       <option>00-99321-020-2540</option>
                       <option>00-99321-025-3050</option>
                     </select>
-                  </div> <!-- 修正 <di> 為 <div> -->
+                  </div>
                   <div class="col-md-6">
                     <label for="partsGroup2" class="form-label fw-bold">Part No.（99323 系列）</label>
                     <select id="partsGroup2" class="form-select" onchange="onPartSelect(this)">
@@ -202,34 +163,27 @@
 
                 <div class="mt-3 muted" id="pickedPartInfo">尚未選擇 Part No.</div>
 
-                <!-- 動態刀桿（延長桿）選項 -->
+                <!-- 動態刀桿 -->
                 <div class="mt-3 d-none" id="extensionBarBlock">
                   <label class="form-label fw-bold">選擇刀桿 (Extension Bar)</label>
                   <select class="form-select" id="extensionBarSelect">
                     <option value="" selected disabled>請選擇刀桿</option>
-                    <!-- 由 JS 動態插入 -->
                   </select>
-
-                  <!-- 這裡即時顯示選到哪一支刀桿 -->
                   <div class="mt-2 text-muted" id="extensionBarStatus">尚未選擇刀桿。</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- /NEW -->
-
           <hr class="my-4" />
 
-          <div class="col-12 my-3">
+          <!-- 材質 + 模式/圖片 -->
+          <div class="col-12">
             <div class="row g-3 align-items-start">
-              <!-- 左：材質選擇 -->
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Workpiece material</label>
                 <select class="form-select" id="selectMaterial" onchange="updateCuttingSpeed(); updateSelectColor()">
                   <option value="" disabled selected>Select material</option>
-
-                  <!-- P ｜ Steel -->
                   <option value="Material01" data-group="P" data-color="#0066CC"
                     style="background-color:#0066CC;color:white;font-weight:bold;">P — Carbon steel C&lt;0.3%</option>
                   <option value="Material02" data-group="P" data-color="#0066CC"
@@ -239,209 +193,201 @@
                   </option>
                   <option value="Material04" data-group="P" data-color="#0066CC"
                     style="background-color:#0066CC;color:white;font-weight:bold;">P — High alloy steel</option>
-
-                  <!-- M ｜ Stainless -->
                   <option value="Material06" data-group="M" data-color="#FFC000"
                     style="background-color:#FFC000;font-weight:bold;">M — Stainless steel</option>
-
-                  <!-- K ｜ Cast Iron -->
                   <option value="Material07" data-group="K" data-color="#FF0000"
                     style="background-color:#FF0000;color:white;font-weight:bold;">K — Cast iron</option>
-
-                  <!-- N ｜ Non-ferrous -->
                   <option value="Material08" data-group="N" data-color="#00B050"
                     style="background-color:#00B050;color:white;font-weight:bold;">N — Al, Al-alloys</option>
                   <option value="Material09" data-group="N" data-color="#00B050"
                     style="background-color:#00B050;color:white;font-weight:bold;">N — Cu, Cu-alloy, casting Cu-alloy
                   </option>
-
-                  <!-- S ｜ Heat/Ti -->
                   <option value="Material10" data-group="S" data-color="#E6007E"
                     style="background-color:#E6007E;color:white;font-weight:bold;">S — Heat resistant alloy</option>
                   <option value="Material11" data-group="S" data-color="#E6007E"
                     style="background-color:#E6007E;color:white;font-weight:bold;">S — Ti, Ti-alloy</option>
-
-                  <!-- H ｜ Hardened -->
                   <option value="Material12" data-group="H" data-color="#A6A6A6"
                     style="background-color:#A6A6A6;font-weight:bold;">H — Hardened steel &lt; HRC50</option>
                 </select>
-                <small class="text-muted d-block mt-4 muted" id="materialHint">ISO group: –</small>
-
-                <!-- 等Maggie圖片 -->
-                <div class="card shadow-sm" id="imgCard">
-                  <div class="card-body d-flex justify-content-center align-items-center" style="min-height:220px;">
-                    <img id="galleryImg" src="https://picsum.photos/300/200?random=20" class="img-fluid rounded"
-                      alt="preview">
-                  </div>
-                  <div class="card-footer bg-white border-0">
-                    <div class="d-flex justify-content-between">
-                      <button id="btnPrev" class="btn btn-outline-primary">← Previous</button>
-                      <button id="btnNext" class="btn btn-outline-primary">Next →</button>
-                    </div>
-                  </div>
-                </div>
-
-
-
+                <small class="text-muted d-block muted mb-4 my-2" id="materialHint">ISO group: –</small>
               </div>
 
-              <!-- 右：兩個欄位 + CE -->
-              <div class="col-md-6">
-                <label class="form-label fw-bold">Pre-bore diameter</label>
-                <div class="input-group mb-2">
-                  <input type="number" class="form-control" id="preBore" placeholder="mm" step="0.001">
-                  <button type="button"
-                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
-                    id="preBoreCe">Clear</button>
-
+              <div class="col-md-6 fw-bold">
+                <div class="btn-group w-100 mb-2" role="group" aria-label="Modes">
+                  <button type="button" class="btn btn-primary mode-btn" data-mode="Mode1">Mode1</button>
+                  <button type="button" class="btn btn-outline-primary mode-btn" data-mode="Mode2">Mode2</button>
+                  <button type="button" class="btn btn-outline-primary mode-btn" data-mode="Mode3">Mode3</button>
                 </div>
-
-                <label class="form-label fw-bold">Machining Diameter</label>
-                <div class="input-group">
-                  <input type="number" class="form-control" id="machiningDia" placeholder="mm" step="0.001">
-                  <button type="button"
-                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
-                    id="machiningDiaCe">Clear</button>
-
+                <div class="card shadow-sm" id="imgCard">
+                  <div class="card-body d-flex justify-content-center align-items-center" style="min-height:220px;">
+                    <img id="galleryImg"
+                      src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg"
+                      class="img-fluid rounded" alt="preview">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-
-
           <hr class="my-4" />
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Tool Diameter ØDc</label>
-            <input type="text" class="form-control bg-light" id="toolDiameter" readonly style="cursor: not-allowed;"
-              placeholder="Please Select Tool" oninput="updateSpindleSpeed()">
-          </div>
+          <!-- 兩組（Mode2 才顯示右組） -->
+          <div class="col-12">
+            <div class="row g-3 align-items-start">
+              <!-- 第1組 -->
+              <div id="group1" class="col-md-6">
+                <label class="form-label fw-bold">Pre-bore diameter</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="preBore1" placeholder="mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="preBoreCe1">Clear</button>
+                </div>
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Cutting Speed</label>
-            <input type="number" class="form-control" id="vc" placeholder="m/min" oninput="updateSpindleSpeed()" />
-          </div>
+                <label class="form-label fw-bold">Machining Diameter</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="machiningDia1" placeholder="Ød1 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="machiningDiaCe1">Clear</button>
+                </div>
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Spindle Speed</label>
-            <input type="number" class="form-control" id="n" placeholder="RPM" readonly
-              style="background-color: #d4edda; cursor: not-allowed;" />
-          </div>
+                <label class="form-label fw-bold">Depth of Cut</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="depthDia1" placeholder="L1 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="depthDiaCe1">Clear</button>
+                </div>
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Number of Teeth</label>
-            <input type="number" class="form-control bg-light" style="cursor: not-allowed;" id="z" value="2" readonly
-              oninput="updateFeedRate()" />
-          </div>
+                <label class="form-label fw-bold">Pitch</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="pitch1" placeholder="P1 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="pitchCe1">Clear</button>
+                </div>
+              </div>
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Feed per Tooth</label>
-            <!-- <input type="number" class="form-control" id="fz" placeholder="mm/tooth" step="0.001"
-              oninput="updateFeedRate()" /> -->
-            <input type="number" class="form-control" id="fz" placeholder="mm/tooth" step="0.001" required
-              oninput="updateFeedRate()" />
+              <!-- 第2組（預設隱藏） -->
+              <div id="group2" class="col-md-6 d-none">
+                <label class="form-label fw-bold">Pre-bore diameter</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="preBore2" placeholder="mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="preBoreCe2">Clear</button>
+                </div>
 
-          </div>
+                <label class="form-label fw-bold">Machining Diameter</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="machiningDia2" placeholder="Ød2 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="machiningDiaCe2">Clear</button>
+                </div>
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Feed Rate</label>
-            <input type="number" class="form-control" id="vf" placeholder="mm/min" readonly
-              style="background-color: #d4edda; cursor: not-allowed;" />
-          </div>
+                <label class="form-label fw-bold">Depth of Cut</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="depthDia2" placeholder="L2 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="depthDiaCe2">Clear</button>
+                </div>
 
-          <hr class="my-4" />
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Thread Size</label>
-            <select class="form-select" id="selectThreadSize">
-              <option value="" disabled selected>Select Insert first</option>
-            </select>
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Outer-Dia</label>
-            <input type="number" class="form-control" id="od" placeholder="mm" step="0.001" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Tap Drill Diameter</label>
-            <input type="number" class="form-control" id="tapDrill" placeholder="mm" step="0.001" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Thread Pitch</label>
-            <input type="number" class="form-control" id="pitch" placeholder="mm" />
-          </div>
-
-          <div class="col-md-12 fw-bold">
-            <label class="form-label">Thread Details</label>
-            <textarea id="threadInfo" class="form-control" style="max-height: 110px; overflow-y: auto;"
-              readonly></textarea>
-          </div>
-
-          <hr class="my-4" />
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Number Of Passes</label>
-            <select class="form-select" id="passes" onchange="updatePassInputs()">
-              <option value="1">1</option>
-              <option value="2" selected>2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </div>
-
-          <div class="col-12 fw-bold">
-            <div class="row" id="passInputs"></div>
+                <label class="form-label fw-bold">Pitch</label>
+                <div class="input-group mb-2">
+                  <input type="number" class="form-control" id="pitch2" placeholder="P2 / mm" step="0.001">
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="pitchCe2">Clear</button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <hr class="my-4" />
 
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Depth of Cut</label>
-            <input type="number" class="form-control" id="depth" value="16" />
+          <!-- 其餘欄位 -->
+          <div class="col-12">
+            <div class="row g-3">
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Tool Diameter ØDc</label>
+                <input type="text" class="form-control bg-light" id="toolDiameter" readonly style="cursor:not-allowed;"
+                  placeholder="Please Select Tool" oninput="updateSpindleSpeed()">
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Cutting Speed</label>
+                <input type="number" class="form-control" id="vc" placeholder="m/min" oninput="updateSpindleSpeed()" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Spindle Speed</label>
+                <input type="number" class="form-control" id="n" placeholder="RPM" readonly
+                  style="background-color:#d4edda;cursor:not-allowed;" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Number of Teeth</label>
+                <input type="number" class="form-control bg-light" style="cursor:not-allowed;" id="z" value="2" readonly
+                  oninput="updateFeedRate()" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Feed per Tooth</label>
+                <input type="number" class="form-control" id="fz" placeholder="mm/tooth" step="0.001" required
+                  oninput="updateFeedRate()" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Feed Rate</label>
+                <input type="number" class="form-control" id="vf" placeholder="mm/min" readonly
+                  style="background-color:#d4edda;cursor:not-allowed;" />
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Tool Number</label>
+                <input type="number" class="form-control" id="toolNo" value="99" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Coordinate System</label>
+                <input type="text" class="form-control" id="gcode" value="G54" />
+              </div>
+
+              <hr class="my-4" />
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Coordinate X</label>
+                <input type="number" class="form-control" id="x" value="0" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Coordinate Y</label>
+                <input type="number" class="form-control" id="y" value="0" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Safe Height Z</label>
+                <input type="number" class="form-control" id="zsafe" value="20" />
+              </div>
+
+              <div class="col-md-6 fw-bold">
+                <label class="form-label">Surface Coordinate Z</label>
+                <input type="number" class="form-control" id="zsurface" value="0" />
+              </div>
+
+              <hr class="my-4" />
+            </div>
           </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Tool Number</label>
-            <input type="number" class="form-control" id="toolNo" value="99" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Coordinate System</label>
-            <input type="text" class="form-control" id="gcode" value="G54" />
-          </div>
-
-          <hr class="my-4" />
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Coordinate X</label>
-            <input type="number" class="form-control" id="x" value="0" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Coordinate Y</label>
-            <input type="number" class="form-control" id="y" value="0" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Safe Height Z</label>
-            <input type="number" class="form-control" id="zsafe" value="20" />
-          </div>
-
-          <div class="col-md-6 fw-bold">
-            <label class="form-label">Surface Coordinate Z</label>
-            <input type="number" class="form-control" id="zsurface" value="0" />
-          </div>
-
-          <hr class="my-4" />
         </div>
       </div>
 
-      <!-- 右側：操作與輸出 -->
-      <div class="col-md-6 my-6">
+      <!-- 右：操作與輸出 -->
+      <div class="col-md-6 my-3">
         <div class="right-pane-sticky">
           <div class="d-flex justify-content-end mb-2">
             <button class="btn btn-secondary me-2 fw-bold" onclick="addTool(); countClick('addTool')">Add Tool</button>
@@ -453,98 +399,61 @@
           <textarea id="result" class="form-control my-3" readonly></textarea>
         </div>
       </div>
-
     </div>
   </div>
 
+  <!-- ===== JS ===== -->
   <script>
-
-    // 料號→允許刀桿白名單 ---------------------------------------------------- //
+    // 料號→允許刀桿白名單
     const PART_TO_BARS = {
-      "00-99323-010-1320": ["00-99801-10S", "00-99801-10W"],  // 這支只允許 10S / 10W
-      // 其他 99323 料號未列出時，預設允許 BAR_DB 全部型號
-      "00-99323-012-1525": ["00-99801-12S", "00-99801-12W"], // 這支只允許 12S / 12W
-      "00-99323-016-2030": ["00-99801-16S", "00-99801-14W", "00-99801-16W"], // 這支只允許 16S / 14W / 16W
-      "00-99323-020-2540": ["00-99801-20S", "00-99801-18W", "00-99801-20W"], // 這支只允許 20S / 18W / 20W
-      "00-99323-025-3050": ["00-99801-25S", "00-99801-25W",], // 這支只允許 25S / 25W
-
+      "00-99323-010-1320": ["00-99801-10S", "00-99801-10W"],
+      "00-99323-012-1525": ["00-99801-12S", "00-99801-12W"],
+      "00-99323-016-2030": ["00-99801-16S", "00-99801-14W", "00-99801-16W"],
+      "00-99323-020-2540": ["00-99801-20S", "00-99801-18W", "00-99801-20W"],
+      "00-99323-025-3050": ["00-99801-25S", "00-99801-25W"]
     };
 
-    // ===== 刀桿資料庫（顯示用的型號/扭力，可日後補齊） =======================
+    // 刀桿資料庫
     const BAR_DB = {
-      "00-99801-10S": { type: "", torque: "" },
-      "00-99801-10W": { type: "", torque: "" },
-
-      "00-99801-12S": { type: "", torque: "" },
-      "00-99801-12W": { type: "", torque: "" },
+      "00-99801-10S": { type: "", torque: "" }, "00-99801-10W": { type: "", torque: "" },
+      "00-99801-12S": { type: "", torque: "" }, "00-99801-12W": { type: "", torque: "" },
       "00-99801-14W": { type: "", torque: "" },
-
-      "00-99801-16S": { type: "", torque: "" },
-      "00-99801-16W": { type: "", torque: "" },
+      "00-99801-16S": { type: "", torque: "" }, "00-99801-16W": { type: "", torque: "" },
       "00-99801-18W": { type: "", torque: "" },
-
-      "00-99801-20S": { type: "", torque: "" },
-      "00-99801-20W": { type: "", torque: "" },
-
-      "00-99801-25S": { type: "", torque: "" },
-      "00-99801-25W": { type: "", torque: "" }
+      "00-99801-20S": { type: "", torque: "" }, "00-99801-20W": { type: "", torque: "" },
+      "00-99801-25S": { type: "", torque: "" }, "00-99801-25W": { type: "", torque: "" }
     };
 
-    // ===== 料號 → Insert 直徑（Dc, mm） =====================================
-    // * 先設定你指定的兩支 010-1320 為 11.0；之後可持續擴充
+    // 料號 → Dc
     const PART_TO_DIAMETER = {
-      "00-99321-010-1320": 11.0,
-      "00-99323-010-1320": 11.0,
-
-      "00-99321-012-1525": 13.0,
-      "00-99323-012-1525": 13.0,
-
-      "00-99321-016-2030": 17.0,
-      "00-99323-016-2030": 17.0,
-
-      "00-99321-020-2540": 22.0,
-      "00-99323-020-2540": 22.0,
-
-      "00-99321-025-3050": 27.0,
-      "00-99323-025-3050": 27.0
-
-
+      "00-99321-010-1320": 11.0, "00-99323-010-1320": 11.0,
+      "00-99321-012-1525": 13.0, "00-99323-012-1525": 13.0,
+      "00-99321-016-2030": 17.0, "00-99323-016-2030": 17.0,
+      "00-99321-020-2540": 22.0, "00-99323-020-2540": 22.0,
+      "00-99321-025-3050": 27.0, "00-99323-025-3050": 27.0
     };
 
-
-    // ===== 共用：依 料號 帶入 Insert 直徑 =====================================
     function applyInsertDiameterByPart(partNo) {
       const td = document.getElementById('toolDiameter');
-      if (PART_TO_DIAMETER.hasOwnProperty(partNo)) {
-        td.value = PART_TO_DIAMETER[partNo].toFixed(1);     // 顯示小數一位，例如 11.0
-      } else {
-        td.value = '';                                      // 沒對照就清空
-      }
-      if (typeof updateSpindleSpeed === 'function') {       // 若有轉速計算就順便重算
-        try { updateSpindleSpeed(); } catch (e) { }
-      }
-    } // 用來在選到特定 Part No. 時，自動填入 Dc；並觸發轉速重算（若有）
+      if (PART_TO_DIAMETER.hasOwnProperty(partNo)) { td.value = PART_TO_DIAMETER[partNo].toFixed(1); }
+      else { td.value = ''; }
+      if (typeof updateSpindleSpeed === 'function') { try { updateSpindleSpeed(); } catch (e) { } }
+    }
 
-    // ===== 共用：依 料號 建刀桿下拉選單 =======================================
     function buildExtensionOptions(partNo) {
       const extSelect = document.getElementById('extensionBarSelect');
-      const allowed = PART_TO_BARS[partNo] || Object.keys(BAR_DB);        // 指定清單或全部
+      const allowed = PART_TO_BARS[partNo] || Object.keys(BAR_DB);
       extSelect.innerHTML = '<option value="" selected disabled>請選擇刀桿</option>';
       allowed.forEach(code => {
         const meta = BAR_DB[code] || { type: "", torque: "" };
         const opt = document.createElement('option');
-        opt.value = code;
-        opt.dataset.type = meta.type;
-        opt.dataset.torque = meta.torque;
-        const label = [code];
-        if (meta.type) label.push(meta.type);
-        if (meta.torque) label.push(`Torque: ${meta.torque}`);
+        opt.value = code; opt.dataset.type = meta.type; opt.dataset.torque = meta.torque;
+        const label = [code]; if (meta.type) label.push(meta.type); if (meta.torque) label.push(`Torque: ${meta.torque}`);
         opt.textContent = label.join(' | ');
         extSelect.appendChild(opt);
       });
-    } // 產生刀桿下拉選單（顯示型號/扭力）；白名單未設時放行全部 BAR_DB
+    }
 
-    // ===== 共用：隱藏刀桿區塊並重置 ===========================================
     function hideExtensionBar() {
       const extBlock = document.getElementById('extensionBarBlock');
       const extSelect = document.getElementById('extensionBarSelect');
@@ -553,29 +462,20 @@
       extSelect.innerHTML = '<option value="" selected disabled>請選擇刀桿</option>';
       extStatus.textContent = '尚未選擇刀桿。';
       extStatus.className = 'mt-2 text-muted';
-    } // 當不需要刀桿選單（如選 99321）時，統一收起並清空內容
+    }
 
-    // ===== 主控：由 Part No. 駕馭 UI（你想要的「像 updateExtensionOptions」）====
     function updateUIByPart(partNo) {
-      // 1) 先依 Part 帶入 Dc
-      applyInsertDiameterByPart(partNo);                                    // 自動填 Insert 直徑
-
-      // 2) 只有 99323 系列顯示刀桿；99321 隱藏
+      applyInsertDiameterByPart(partNo);
       const is99323 = /^00-99323-/.test(partNo);
-      if (!is99323) { hideExtensionBar(); return; }                         // 99321 → 不顯示刀桿
-
-      // 3) 顯示刀桿區塊並依白名單建立選項
+      if (!is99323) { hideExtensionBar(); return; }
       const extBlock = document.getElementById('extensionBarBlock');
       const extStatus = document.getElementById('extensionBarStatus');
-      buildExtensionOptions(partNo);                                        // 依料號載入白名單
+      buildExtensionOptions(partNo);
       extBlock.classList.remove('d-none');
       extStatus.textContent = '尚未選擇刀桿。';
       extStatus.className = 'mt-2 text-muted';
-    } // 這隻就是把「由 Part No. 來控制 Dc 與刀桿下拉」的主流程
+    }
 
-
-
-    //讓選到刀桿時在下方顯示是哪一支（保留不動即可）
     document.getElementById('extensionBarSelect').addEventListener('change', function () {
       const opt = this.options[this.selectedIndex];
       const status = document.getElementById('extensionBarStatus');
@@ -589,22 +489,16 @@
         status.textContent = '尚未選擇刀桿。';
         status.className = 'mt-2 text-muted';
       }
-    }); // 顯示「已選擇刀桿：...」
+    });
 
-
-
-
-    // ===== 事件：兩組 Part No. 的 onchange 都走這裡 ===========================
     function onPartSelect(sel) {
-      const g1 = document.getElementById('partsGroup1'); // 99321
-      const g2 = document.getElementById('partsGroup2'); // 99323
+      const g1 = document.getElementById('partsGroup1');
+      const g2 = document.getElementById('partsGroup2');
       const pickedInfo = document.getElementById('pickedPartInfo');
 
-      // 互斥（先清掉另一組，避免抓到舊值）
       if (sel.id === 'partsGroup1') { g2.selectedIndex = 0; }
       if (sel.id === 'partsGroup2') { g1.selectedIndex = 0; }
 
-      // 顯示 + 切換顏色
       const val = sel.value || sel.options[sel.selectedIndex]?.text;
       if (val) {
         pickedInfo.textContent = `已選擇的 Part No.：${val}`;
@@ -616,159 +510,89 @@
         pickedInfo.classList.add('muted');
       }
 
-      // 依 Part 驅動 UI
       if (val) updateUIByPart(val);
-
-      // 套系列/材料的切削參數
       if (typeof updateCuttingSpeed === 'function') updateCuttingSpeed();
-
-      // 重新判斷 fz 是否要閃
       if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
     }
 
-
-
-    // ===== 相容性：保留這個名稱，避免 selectTool 的 onchange 報錯 ==============
     function updateExtensionOptions() {
-      // 這隻函式現在改成「由目前選到的 Part」來決定，不再用刀片型號
-      const g2 = document.getElementById('partsGroup2'); // 先用 99323
-      const g1 = document.getElementById('partsGroup1'); // 再用 99321
+      const g2 = document.getElementById('partsGroup2');
+      const g1 = document.getElementById('partsGroup1');
       const partNo = g2.value || g1.value || '';
       if (partNo) updateUIByPart(partNo);
-    } // 如果你之後把 selectTool 的 onchange 拿掉，這隻也可以移除
+    }
   </script>
 
-
-
   <script>
-    //材料選擇地的著色
-    // 根據所選項目的 data-color 調整下拉背景與提示字
+    // 材質選擇著色 & ISO 提示
     function updateSelectColor() {
       const sel = document.getElementById('selectMaterial');
       const opt = sel.options[sel.selectedIndex];
       if (!opt) return;
-
       const color = opt.dataset.color || '';
       const group = opt.dataset.group || '';
-
-      // 著色（原生 select 各瀏覽器支持程度不同，但 Chrome 可）
       sel.style.backgroundColor = color || '';
-      // 對比色處理（深色底 -> 白字，淺色底 -> 黑字）
       const whiteTextOn = ['#0066CC', '#FF0000', '#00B050', '#E6007E'];
       sel.style.color = whiteTextOn.includes(color) ? '#fff' : '#000';
-
-      // 顯示 ISO 群組提示
       const hint = document.getElementById('materialHint');
       hint.textContent = group ? `ISO group: ${group}` : 'ISO group: –';
     }
 
-    // 若預設有值，進場時也套色
-    document.addEventListener('DOMContentLoaded', () => {
-      updateSelectColor();
-      updateCuttingSpeed();
-    });
-
+    document.addEventListener('DOMContentLoaded', () => { updateSelectColor(); updateCuttingSpeed(); });
   </script>
 
   <script>
-    //材料的帶入數值
-
-    // 依系列區分（可自由調整 99323 的數值）
+    // 切削參數（分系列）
     const cuttingSpeedMapBySeries = {
-      "99321": {                                     // 99321 系列
-        Material01: { vc: 120.0 },        // P — 低碳鋼
-        Material02: { vc: 100.0 },        // P — 高碳鋼
-        Material03: { vc: 70.0 },        // P — 低合金鋼
-        Material04: { vc: 60.0 },        // P — 高合金鋼
-        Material05: { vc: 0.0 },        // 若未使用可保留
-        Material06: { vc: 60.0 },        // M — 不銹鋼
-        Material07: { vc: 70.0 },        // K — 鑄鐵
-        Material08: { vc: 350.0 },        // N — 鋁合金 
-        Material09: { vc: 200.0 },        // N — 銅/銅合金
-        Material10: { vc: 20.0 },         // S — 高溫合金
-        Material11: { vc: 40.0 },         // S — 鈦/鈦合金
-        Material12: { vc: 60.0 }          // H — 調質鋼 < HRC50
-      },
-      "99323": {                                     // 99323 系列（先與 99321 相同，之後按需要調整）
-        Material01: { vc: 200.0 },
-        Material02: { vc: 150.0 },
-        Material03: { vc: 120.0 },
-        Material04: { vc: 90.0 },
-        Material05: { vc: 0.0 },
-        Material06: { vc: 90.0 },
-        Material07: { vc: 120.0 },
-        Material08: { vc: 500.0 },
-        Material09: { vc: 400.0 },
-        Material10: { vc: 30.0 },
-        Material11: { vc: 60.0 },
-        Material12: { vc: 90.0 }
-      }
+      "99321": { Material01: { vc: 120 }, Material02: { vc: 100 }, Material03: { vc: 70 }, Material04: { vc: 60 }, Material05: { vc: 0 }, Material06: { vc: 60 }, Material07: { vc: 70 }, Material08: { vc: 350 }, Material09: { vc: 200 }, Material10: { vc: 20 }, Material11: { vc: 40 }, Material12: { vc: 60 } },
+      "99323": { Material01: { vc: 200 }, Material02: { vc: 150 }, Material03: { vc: 120 }, Material04: { vc: 90 }, Material05: { vc: 0 }, Material06: { vc: 90 }, Material07: { vc: 120 }, Material08: { vc: 500 }, Material09: { vc: 400 }, Material10: { vc: 30 }, Material11: { vc: 60 }, Material12: { vc: 90 } }
     };
 
-
     function getSelectedPartNo() {
-      const g2 = document.getElementById('partsGroup2'); // 99323
-      const g1 = document.getElementById('partsGroup1'); // 99321
-      return (g2 && g2.value) ? g2.value : (g1 && g1.value) ? g1.value : ""; // 取有值的那組
+      const g2 = document.getElementById('partsGroup2');
+      const g1 = document.getElementById('partsGroup1');
+      return (g2 && g2.value) ? g2.value : (g1 && g1.value) ? g1.value : "";
     }
-
     function getSeriesFromPart(partNo) {
-      if (/^00-99323-/.test(partNo)) return "99323";   // 以料號開頭判斷系列
+      if (/^00-99323-/.test(partNo)) return "99323";
       if (/^00-99321-/.test(partNo)) return "99321";
-      return null;                                      // 尚未選擇 Part No.
+      return null;
     }
-
 
     function updateCuttingSpeed() {
-      const material = document.getElementById("selectMaterial").value;  // 目前選到的材料
-      const partNo = getSelectedPartNo();                                // 目前選到的 Part No.
-      const series = getSeriesFromPart(partNo) || "99321";               // 預設用 99321（尚未選擇時）
-
+      const material = document.getElementById("selectMaterial").value;
+      const partNo = getSelectedPartNo();
+      const series = getSeriesFromPart(partNo) || "99321";
       const table = cuttingSpeedMapBySeries[series] || {};
       const data = table[material];
-
       const vcInput = document.getElementById("vc");
       const fzInput = document.getElementById("fz");
 
       if (data) {
-        vcInput.value = data.vc;     // 依系列/材料帶入 Vc
-        fzInput.value = data.fz;     // 依系列/材料帶入 fz（若只想分 Vc 也可固定 fz）
-        if (typeof updateSpindleSpeed === 'function') updateSpindleSpeed(); // 連動 N/Vf
+        vcInput.value = (typeof data.vc !== "undefined") ? data.vc : "";
+        if (typeof data.fz !== "undefined") { fzInput.value = data.fz; }
       } else {
         vcInput.value = "";
-        fzInput.value = "";
       }
-
-      if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
-
+      if (typeof updateSpindleSpeed === "function") updateSpindleSpeed();
+      if (typeof window.syncFzBlink === "function") window.syncFzBlink();
     }
-
-
   </script>
 
-
   <script>
-    //轉速進給
+    // 轉速/Vf
     function updateSpindleSpeed() {
       const d = parseFloat(document.getElementById("toolDiameter").value);
       const vc = parseFloat(document.getElementById("vc").value);
-
-      console.log("Tool Diameter =", d);
-      console.log("Cutting Speed =", vc);
-
       if (!isNaN(d) && d > 0 && !isNaN(vc) && vc > 0) {
         const n = (1000 * vc) / (Math.PI * d);
         document.getElementById("n").value = n.toFixed(0);
       } else {
         document.getElementById("n").value = "";
       }
-
       updateFeedRate();
-
       if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
-
     }
-
     function updateFeedRate() {
       const z = parseFloat(document.getElementById("z").value);
       const fz = parseFloat(document.getElementById("fz").value);
@@ -780,147 +604,250 @@
         document.getElementById("vf").value = "";
       }
     }
-
   </script>
 
-
-  <script>//按鈕案件
-    //Add TOOL
+  <script>
+    // Add/Clear（其餘按鈕）
     function addTool() {
       const toolNo = document.getElementById("toolNo").value;
       const spindleSpeed = document.getElementById("n").value;
-      const gcode = `G17 G21 G49 G80\nT${toolNo} M06\nS${spindleSpeed} M03\nM08\n`;
+      const gcode = `G90 G17 G21 G49 G80\nT${toolNo} M06\nS${spindleSpeed} M03\nM08\n`;
       document.getElementById("result").value += gcode + "\n";
     }
-
-    //Clear
-    function clearOutput() {
-      document.getElementById("result").value = "";
-    }
+    function clearOutput() { document.getElementById("result").value = ""; }
+    // 簡單 stub
+    function exportToFile() { /* TODO */ }
+    function countClick() { /* TODO */ }
+    function updatePassInputs() { /* TODO */ }
   </script>
 
   <script>
-    // Fz 閃爍：只有在「該填 fz」時才閃
+    // Fz 閃爍提示
     (function () {
-      const fz = document.getElementById('fz');
-      let timer = null;
-
-      // 何時該閃？
-      // 1) fz 空白或 <= 0
-      // 2) 且已具備計算/加工的其他條件： (vc 與 Dc 都有) 或 (n 已有)
+      const fz = document.getElementById('fz'); let timer = null;
       function shouldBlinkFz() {
-        const fzVal = parseFloat(fz.value);
-        const isFzMissing = isNaN(fzVal) || fzVal <= 0;
-
+        const fzVal = parseFloat(fz.value); const isFzMissing = isNaN(fzVal) || fzVal <= 0;
         const vc = parseFloat(document.getElementById('vc').value);
         const d = parseFloat(document.getElementById('toolDiameter').value);
         const n = parseFloat(document.getElementById('n').value);
-
-        const hasVcAndD = !isNaN(vc) && vc > 0 && !isNaN(d) && d > 0;
-        const hasN = !isNaN(n) && n > 0;
-
+        const hasVcAndD = !isNaN(vc) && vc > 0 && !isNaN(d) && d > 0; const hasN = !isNaN(n) && n > 0;
         return isFzMissing && (hasVcAndD || hasN);
       }
-
-      function startBlink() {
-        if (timer) return;
-        timer = setInterval(() => fz.classList.toggle('blink'), 650); // 調整頻率在這
-      }
-
-      function stopBlink() {
-        if (timer) {
-          clearInterval(timer);
-          timer = null;
-        }
-        fz.classList.remove('blink');
-      }
-
-      function syncFzBlink() {
-        if (shouldBlinkFz()) startBlink(); else stopBlink();
-      }
-
-      // 對外開放，讓其他流程可觸發同步
+      function startBlink() { if (timer) return; timer = setInterval(() => fz.classList.toggle('blink'), 650); }
+      function stopBlink() { if (timer) { clearInterval(timer); timer = null; } fz.classList.remove('blink'); }
+      function syncFzBlink() { if (shouldBlinkFz()) startBlink(); else stopBlink(); }
       window.syncFzBlink = syncFzBlink;
-
-      // 事件：fz 有輸入就重新判斷
       fz.addEventListener('input', syncFzBlink);
-
-      // 初次載入 / 返回頁面時都同步一次
       document.addEventListener('DOMContentLoaded', syncFzBlink);
       window.addEventListener('pageshow', syncFzBlink);
-
-      // 分頁不可見時停掉計時器，回來再判斷
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stopBlink(); else syncFzBlink();
-      });
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stopBlink(); else syncFzBlink(); });
     })();
-
-    if (typeof syncFzBlink === 'function') syncFzBlink();
-
-    if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
-
-
   </script>
 
-
   <script>
-    // CE 的部分（清空欄位 + 觸發相關重算 + 聚焦）
+    // 兩組欄位清除
     document.addEventListener('DOMContentLoaded', () => {
       function clearField(id) {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.value = '';
-        // 讓其他 oninput 監聽（例如進給/轉速/閃爍）能收到變更
-        el.dispatchEvent(new Event('input', { bubbles: true }));
-        el.focus();
-
-        // 如有需要，連動重算
+        const el = document.getElementById(id); if (!el) return;
+        el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true }));
         if (typeof updateSpindleSpeed === 'function') updateSpindleSpeed();
         if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
+        el.focus();
       }
-
-      const preBoreBtn = document.getElementById('preBoreCe');
-      const machDiaBtn = document.getElementById('machiningDiaCe');
-
-      if (preBoreBtn) preBoreBtn.addEventListener('click', () => clearField('preBore'));
-      if (machDiaBtn) machDiaBtn.addEventListener('click', () => clearField('machiningDia'));
+      const pairs = [
+        ['preBoreCe1', 'preBore1'], ['machiningDiaCe1', 'machiningDia1'], ['depthDiaCe1', 'depthDia1'], ['pitchCe1', 'pitch1'],
+        ['preBoreCe2', 'preBore2'], ['machiningDiaCe2', 'machiningDia2'], ['depthDiaCe2', 'depthDia2'], ['pitchCe2', 'pitch2'],
+      ];
+      pairs.forEach(([btnId, fieldId]) => {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.addEventListener('click', () => clearField(fieldId));
+      });
     });
   </script>
 
-
-  <script>//Maggiew圖片
-    // 你要輪播的圖片清單（可換成自己的 URL）
-    const images = [
-      "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg",
-      "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.02.jpg",
-      "https://picsum.photos/300/200?random=22"
-    ];
-
-    let idx = 0;
+  <!-- ===== 模式切換 + 依 Mode 生成 G-code ===== -->
+  <script>
+    const imagesByMode = {
+      Mode1: "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg",
+      Mode2: "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.02.jpg",
+      Mode3: "https://picsum.photos/300/200?random=41"
+    };
     const imgEl = document.getElementById("galleryImg");
-    const prevEl = document.getElementById("btnPrev");
-    const nextEl = document.getElementById("btnNext");
+    const modeBtns = document.querySelectorAll(".mode-btn");
+    const group1 = document.getElementById("group1");
+    const group2 = document.getElementById("group2");
 
-    function show(i) {
-      idx = (i + images.length) % images.length; // 環狀索引
-      imgEl.src = images[idx];
+    // ★ 記住目前模式
+    let currentMode = 'Mode1';
+
+    function setMode(mode) {
+      currentMode = mode; // 更新目前模式
+      imgEl.src = imagesByMode[mode] || "";
+      modeBtns.forEach(b => {
+        const active = (b.dataset.mode === mode);
+        b.classList.toggle("btn-primary", active);
+        b.classList.toggle("btn-outline-primary", !active);
+        b.classList.toggle("active", active);
+      });
+      const showSecond = (mode === "Mode2");
+      group2.classList.toggle("d-none", !showSecond);
+      if (showSecond) {
+        group1.classList.remove("col-12"); group1.classList.add("col-md-6");
+      } else {
+        group1.classList.remove("col-md-6"); group1.classList.add("col-12");
+        ["preBore2", "machiningDia2", "depthDia2", "pitch2"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) { el.value = ""; el.dispatchEvent(new Event("input", { bubbles: true })); }
+        });
+      }
     }
-
-    prevEl.addEventListener("click", () => show(idx - 1));
-    nextEl.addEventListener("click", () => show(idx + 1));
+    modeBtns.forEach(btn => btn.addEventListener("click", () => setMode(btn.dataset.mode)));
+    setMode("Mode1");
   </script>
 
+  <script>
+    // === 依 Mode 生成 G-code ===
+    function calculateGCode(modeOverride) {
+      const mode = modeOverride || currentMode || document.querySelector('.mode-btn.active')?.dataset.mode || 'Mode1';
+      const out = [];
+      const result = document.getElementById('result');
+
+      // helpers
+      const num = id => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const v = parseFloat(el.value);
+        return isNaN(v) ? null : v;
+      };
+      const txt = id => (document.getElementById(id)?.value ?? "").trim();
+      const fmt = (v, dec = 3) => (v == null || isNaN(v)) ? '-' : (+v).toFixed(dec);
+      const pushBlk = lines => lines.forEach(l => out.push(l));
+
+      // 基本參數
+      const toolNo = txt('toolNo') || '99';
+      const sys = txt('gcode') || 'G54';
+      const x0 = num('x') ?? 0;
+      const y0 = num('y') ?? 0;
+      const zsafe = num('zsafe') ?? 20;
+      const zsurf = num('zsurface') ?? 0;
+
+      const Dc = num('toolDiameter');
+      const Vc = num('vc');
+      const N = num('n');
+      const Zteeth = num('z');
+      const Fz = num('fz');
+      let Vf = num('vf');
+
+      // 若未計算到 Vf，嘗試用 N*fz*z 算
+      if ((Vf == null || isNaN(Vf)) && N && Fz && Zteeth) { Vf = N * Fz * Zteeth; }
+
+      out.push(`(=== NC Helix Drill / ${mode} ===)`);
+      out.push(`(Tool Dc=${fmt(Dc, 3)} mm, Vc=${fmt(Vc, 1)} m/min, N=${fmt(N, 0)} rpm, z=${fmt(Zteeth, 0)}, fz=${fmt(Fz, 3)} mm/tooth, Vf=${fmt(Vf, 1)} mm/min)`);
+
+      out.push(`${sys} G00 X${fmt(x0, 3)} Y${fmt(y0, 3)}`);
+      out.push(`G43 H${toolNo} Z${fmt(zsafe, 3)}`);
+
+
+      // 生成一段螺旋加工 G-code（展開式）
+      function buildHelixSection(label, machiningDia, depth, pitch, prebore) {
+        const block = [];
+        if (machiningDia == null || depth == null || pitch == null) {
+          block.push(`(WARN) ${label}: 缺少欄位，略過。`);
+          return block;
+        }
+        if (!Dc) {
+          block.push(`(WARN) ${label}: 未知刀徑 Dc，略過。`);
+          return block;
+        }
+
+        const R = (machiningDia - Dc) / 2; // 加工半徑 (中心到走刀路徑)
+        const steps = Math.max(1, Math.ceil(depth / pitch));
+        const effPitch = depth / steps; // 最後一步自動壓齊
+
+        block.push(`(--- ${label} ---)`);
+        block.push(`(Target Ø=${fmt(machiningDia, 3)}; Depth L=${fmt(depth, 3)}; Pitch=${fmt(pitch, 3)}; R=${fmt(R, 3)})`);
+
+        // 進入工面
+        block.push(`G00 Z${fmt(zsurf + 2, 3)}`);
+
+        if (R > 0.0001) {
+          // 從圓心移到起刀點 (X+R, Y)
+          // block.push(`G00 X${fmt(x0+R,3)} Y${fmt(y0,3)} `);
+          block.push(`G01 X${fmt(x0 + R, 3)} Z${fmt(zsurf, 3)} F${fmt(Vf || 200, 1)}`);
+          // 切入到工面
+          // block.push(`G01 Z${fmt(zsurf,3)} F${fmt(Vf||200,1)}`);
+
+          // 分層下刀 + 每層一圈
+          let currentZ = zsurf;
+          for (let i = 1; i <= steps; i++) {
+            currentZ -= effPitch;
+            // block.push(`G01 Z${fmt(currentZ, 3)} F${fmt(Vf || 200, 1)}`);
+            // 以圓心偏置 I,J 走一圈（由起點 X+R,Y 繞回來）：中心在 (X,Y) → I = -R, J = 0
+            // block.push(`G02 I${fmt(-R, 3)} J0.000 F${fmt(Vf || 200, 1)}`);
+            block.push(`G03 I${fmt(-R, 3)} Z${fmt(currentZ, 3)} F${fmt(Vf || 200, 1)}`);
+            // 以圓心偏置 I,J 走一圈（由起點 X+R,Y 繞回來）：中心在 (X,Y) → I = -R, J = 0
+
+          }
+        } else {
+          // R<=0 → 直下鑽削
+          block.push(`(NOTE) R<=0，改為直下鑽削)`);
+          block.push(`G01 Z${fmt(zsurf, 3)} F${fmt(Vf || 200, 1)}`);
+          block.push(`G01 Z${fmt(zsurf - depth, 3)} F${fmt(Vf || 200, 1)}`);
+        }
+
+        // 退刀
+        block.push(`G03 I${fmt(-R, 3)} F${fmt(Vf || 200, 1)}`);
+        block.push(`G00 Z${fmt(zsafe, 3)}`);
+        return block;
+      }
+
+      if (mode === 'Mode1') {
+        const prebore1 = num('preBore1');
+        const d1 = num('machiningDia1');
+        const L1 = num('depthDia1');
+        const P1 = num('pitch1');
+
+        pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
+
+      } else if (mode === 'Mode2') {
+        const prebore1 = num('preBore1');
+        const d1 = num('machiningDia1');
+        const L1 = num('depthDia1');
+        const P1 = num('pitch1');
+
+        const prebore2 = num('preBore2');
+        const d2 = num('machiningDia2');
+        const L2 = num('depthDia2');
+        const P2 = num('pitch2');
+
+        pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
+        pushBlk(buildHelixSection('Group2', d2, L2, P2, prebore2));
+
+      } else if (mode === 'Mode3') {
+        out.push(`(Mode3 預留)`);
+      } else {
+        out.push(`(Error) Unknown mode: ${mode}`);
+      }
+
+      // out.push(`M09`);
+      // out.push(`G00 Z${fmt(zsafe, 3)}`);
+      // out.push(`M05`);
+      out.push(`(=== End ===)`);
+
+      // 寫回輸出
+      if (result.value && !result.value.endsWith('\n')) result.value += '\n';
+      result.value += out.join('\n') + '\n\n';
+      result.scrollTop = result.scrollHeight;
+    }
+  </script>
 
   <footer class="site-footer mt-5">
     <div class="footer-topbar"></div>
     <div class="container py-5">
       <div class="row gy-4 align-items-start">
-        <!-- 1｜Logo / 認證 -->
-        <!-- <div class="col-12 col-md-6 col-lg-3 text-center text-lg-start">
-          <img src="https://www.jic-tools.com.tw/themes/jictools2/index/images/logo.png" alt="JIMMORE" class="footer-logo mb-3"> -->
         <div class="col-12 col-md-6 col-lg-3 text-center">
-          <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer_logo.png" alt="JIMMORE"
-            class="footer-logo mb-3 mx-auto d-block">
+          <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer_logo.png"
+            alt="JIMMORE" class="footer-logo mb-3 mx-auto d-block">
           <div class="badge-row mb-3">
             <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_01.png"
               alt="SGS">
@@ -928,20 +855,13 @@
               alt="SGS">
             <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_03.png"
               alt="UKAS">
-            <!-- <img src="https://picsum.photos/300/300?random=4" alt="UKAS">
-            <img src="https://picsum.photos/300/300?random=4" alt="UKAS">
-            <img src="https://picsum.photos/300/300?random=4" alt="UKAS">
-            <img src="https://picsum.photos/300/300?random=4" alt="UKAS"> -->
           </div>
           <a href="#" target="_blank" rel="noopener">
             <img src="https://www.jic-tools.com.tw/themes/jictools2/images/Jimmore-footer-iso_2.png"
               alt="D-U-N-S Certified" class="duns-img">
-            <!-- <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_04.png"
-              alt="D-U-N-S Certified" class="duns-img"> -->
           </a>
         </div>
 
-        <!-- 2｜Head Office -->
         <div class="col-12 col-md-6 col-lg-3">
           <div class="footer-sec-title">Head Office</div>
           <div class="footer-underline"></div>
@@ -951,7 +871,6 @@
           </address>
         </div>
 
-        <!-- 3｜Contact / Hours -->
         <div class="col-12 col-md-6 col-lg-3">
           <div class="footer-sec-title">Contact</div>
           <div class="footer-underline"></div>
@@ -966,7 +885,6 @@
           <p class="small mb-0">Mon–Fri 09:00–18:00 (GMT+8)</p>
         </div>
 
-        <!-- 4｜Legal -->
         <div class="col-12 col-md-6 col-lg-3">
           <div class="footer-sec-title">Legal</div>
           <div class="footer-underline"></div>
@@ -980,16 +898,10 @@
           </ul>
         </div>
       </div>
-
     </div>
 
-    <script>
-      // 動態年份
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-
+    <script>document.getElementById('year').textContent = (new Date()).getFullYear();</script>
   </footer>
-
 </body>
 
 </html>
