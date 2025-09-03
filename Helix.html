@@ -8,45 +8,121 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" />
 
   <style>
-    textarea { height: 400px }
-    .muted { font-size: .9rem; color: #6c757d }
-    @media (min-width:992px){ .right-pane-sticky{ position: sticky; top:12px; z-index:10 } }
+    textarea {
+      height: 400px
+    }
+
+    .muted {
+      font-size: .9rem;
+      color: #6c757d
+    }
+
+    @media (min-width:992px) {
+      .right-pane-sticky {
+        position: sticky;
+        top: 12px;
+        z-index: 10
+      }
+    }
 
     /* fz visual hint */
-    #fz::placeholder, #fz::-webkit-input-placeholder, #fz::-moz-placeholder, #fz:-ms-input-placeholder{
-      color: rgba(13,110,253,.35); transition: color .2s ease
+    #fz::placeholder,
+    #fz::-webkit-input-placeholder,
+    #fz::-moz-placeholder,
+    #fz:-ms-input-placeholder {
+      color: rgba(13, 110, 253, .35);
+      transition: color .2s ease
     }
-    #fz.blink::placeholder, #fz.blink::-webkit-input-placeholder, #fz.blink::-moz-placeholder, #fz.blink:-ms-input-placeholder{
-      color:#0d6efd
+
+    #fz.blink::placeholder,
+    #fz.blink::-webkit-input-placeholder,
+    #fz.blink::-moz-placeholder,
+    #fz.blink:-ms-input-placeholder {
+      color: #0d6efd
     }
-    #fz.blink{ box-shadow:0 0 0 .25rem rgba(13,110,253,.15) }
+
+    #fz.blink {
+      box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .15)
+    }
 
     /* Clear buttons */
-    .btn-ce{
-      background:#eaffea; border:1px solid #28a745; color:#28a745;
-      font-weight:700; padding:.125rem .5rem; border-radius:.35rem
+    .btn-ce {
+      background: #eaffea;
+      border: 1px solid #28a745;
+      color: #28a745;
+      font-weight: 700;
+      padding: .125rem .5rem;
+      border-radius: .35rem
     }
 
     /* Footer */
-    .site-footer{ background:#3f474b; color:#e9ecef }
-    .site-footer .footer-topbar{ height:10px; background:#c7c7c7 }
-    .site-footer a{ color:#e9f2ff }
-    .site-footer a:hover{ text-decoration: underline }
-    .footer-logo{ height:72px; display:block; margin-inline:auto }
-    @media (min-width:1200px){ .footer-logo{ height:80px } }
+    .site-footer {
+      background: #3f474b;
+      color: #e9ecef
+    }
 
-    .badge-row{ display:flex; align-items:center; flex-wrap:wrap; gap:.35rem .5rem; justify-content:center }
-    .badge-row img{ height:48px }
-    .duns-img{ height:60px; max-width:100% }
-    .footer-underline{ height:2px; width:100%; background:rgba(255,255,255,.35); margin:.4rem 0 1rem }
-    @media (max-width:991.98px){ .site-footer .row>[class*="col-"]{ text-align:center } }
+    .site-footer .footer-topbar {
+      height: 10px;
+      background: #c7c7c7
+    }
+
+    .site-footer a {
+      color: #e9f2ff
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline
+    }
+
+    .footer-logo {
+      height: 72px;
+      display: block;
+      margin-inline: auto
+    }
+
+    @media (min-width:1200px) {
+      .footer-logo {
+        height: 80px
+      }
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .35rem .5rem;
+      justify-content: center
+    }
+
+    .badge-row img {
+      height: 48px
+    }
+
+    .duns-img {
+      height: 60px;
+      max-width: 100%
+    }
+
+    .footer-underline {
+      height: 2px;
+      width: 100%;
+      background: rgba(255, 255, 255, .35);
+      margin: .4rem 0 1rem
+    }
+
+    @media (max-width:991.98px) {
+      .site-footer .row>[class*="col-"] {
+        text-align: center
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="container my-3">
     <h1 class="mb-4 my-3 d-flex align-items-center">
-      <img src="https://nine9.jic-tools.com.tw/themes/nine9/images/logo.png" alt="Logo" height="100" style="margin-right:10px;">
+      <img src="https://nine9.jic-tools.com.tw/themes/nine9/images/logo.png" alt="Logo" height="100"
+        style="margin-right:10px;">
       <strong class="fw-bold">NC Program Generator for NC Helix Drill</strong>
     </h1>
 
@@ -108,17 +184,30 @@
                 <label class="form-label">Workpiece material</label>
                 <select class="form-select" id="selectMaterial" onchange="updateCuttingSpeed(); updateSelectColor()">
                   <option value="" disabled selected>Select material</option>
-                  <option value="Material01" data-group="P" data-color="#0066CC" style="background-color:#0066CC;color:white;font-weight:bold;">P — Carbon steel C&lt;0.3%</option>
-                  <option value="Material02" data-group="P" data-color="#0066CC" style="background-color:#0066CC;color:white;font-weight:bold;">P — Carbon steel C&gt;0.3%</option>
-                  <option value="Material03" data-group="P" data-color="#0066CC" style="background-color:#0066CC;color:white;font-weight:bold;">P — Low alloy steel C&lt;0.3%</option>
-                  <option value="Material04" data-group="P" data-color="#0066CC" style="background-color:#0066CC;color:white;font-weight:bold;">P — High alloy steel</option>
-                  <option value="Material06" data-group="M" data-color="#FFC000" style="background-color:#FFC000;font-weight:bold;">M — Stainless steel</option>
-                  <option value="Material07" data-group="K" data-color="#FF0000" style="background-color:#FF0000;color:white;font-weight:bold;">K — Cast iron</option>
-                  <option value="Material08" data-group="N" data-color="#00B050" style="background-color:#00B050;color:white;font-weight:bold;">N — Al, Al-alloys</option>
-                  <option value="Material09" data-group="N" data-color="#00B050" style="background-color:#00B050;color:white;font-weight:bold;">N — Cu, Cu-alloy, casting Cu-alloy</option>
-                  <option value="Material10" data-group="S" data-color="#E6007E" style="background-color:#E6007E;color:white;font-weight:bold;">S — Heat resistant alloy</option>
-                  <option value="Material11" data-group="S" data-color="#E6007E" style="background-color:#E6007E;color:white;font-weight:bold;">S — Ti, Ti-alloy</option>
-                  <option value="Material12" data-group="H" data-color="#A6A6A6" style="background-color:#A6A6A6;font-weight:bold;">H — Hardened steel &lt; HRC50</option>
+                  <option value="Material01" data-group="P" data-color="#0066CC"
+                    style="background-color:#0066CC;color:white;font-weight:bold;">P — Carbon steel C&lt;0.3%</option>
+                  <option value="Material02" data-group="P" data-color="#0066CC"
+                    style="background-color:#0066CC;color:white;font-weight:bold;">P — Carbon steel C&gt;0.3%</option>
+                  <option value="Material03" data-group="P" data-color="#0066CC"
+                    style="background-color:#0066CC;color:white;font-weight:bold;">P — Low alloy steel C&lt;0.3%
+                  </option>
+                  <option value="Material04" data-group="P" data-color="#0066CC"
+                    style="background-color:#0066CC;color:white;font-weight:bold;">P — High alloy steel</option>
+                  <option value="Material06" data-group="M" data-color="#FFC000"
+                    style="background-color:#FFC000;font-weight:bold;">M — Stainless steel</option>
+                  <option value="Material07" data-group="K" data-color="#FF0000"
+                    style="background-color:#FF0000;color:white;font-weight:bold;">K — Cast iron</option>
+                  <option value="Material08" data-group="N" data-color="#00B050"
+                    style="background-color:#00B050;color:white;font-weight:bold;">N — Al, Al-alloys</option>
+                  <option value="Material09" data-group="N" data-color="#00B050"
+                    style="background-color:#00B050;color:white;font-weight:bold;">N — Cu, Cu-alloy, casting Cu-alloy
+                  </option>
+                  <option value="Material10" data-group="S" data-color="#E6007E"
+                    style="background-color:#E6007E;color:white;font-weight:bold;">S — Heat resistant alloy</option>
+                  <option value="Material11" data-group="S" data-color="#E6007E"
+                    style="background-color:#E6007E;color:white;font-weight:bold;">S — Ti, Ti-alloy</option>
+                  <option value="Material12" data-group="H" data-color="#A6A6A6"
+                    style="background-color:#A6A6A6;font-weight:bold;">H — Hardened steel &lt; HRC50</option>
                 </select>
                 <small class="text-muted d-block muted mb-4 my-2" id="materialHint">ISO group: –</small>
               </div>
@@ -129,8 +218,15 @@
                   <button type="button" class="btn btn-outline-primary mode-btn" data-mode="Mode2">Mode2</button>
                 </div>
                 <div class="card shadow-sm" id="imgCard">
+
                   <div class="card-body d-flex justify-content-center align-items-center" style="min-height:220px;">
-                    <img id="galleryImg" src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg" class="img-fluid rounded" alt="preview">
+                    <img id="galleryImg"
+                      src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg"
+                      class="img-fluid rounded" alt="preview">
+                  </div>
+                  <!-- 動態說明 -->
+                  <div class="card-footer text-center small text-muted" id="modeHint">
+                    On solid surface, Helical interpolation
                   </div>
                 </div>
               </div>
@@ -147,25 +243,33 @@
                 <label class="form-label fw-bold">Pre-bore diameter</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="preBore1" placeholder="mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="preBoreCe1">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="preBoreCe1">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Machining Diameter</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="machiningDia1" placeholder="Ød1 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="machiningDiaCe1">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="machiningDiaCe1">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Depth of Cut</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="depthDia1" placeholder="L1 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="depthDiaCe1">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="depthDiaCe1">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Pitch</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="pitch1" placeholder="P1 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="pitchCe1">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="pitchCe1">Clear</button>
                 </div>
               </div>
 
@@ -174,25 +278,33 @@
                 <label class="form-label fw-bold">Pre-bore diameter</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="preBore2" placeholder="mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="preBoreCe2">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="preBoreCe2">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Machining Diameter</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="machiningDia2" placeholder="Ød2 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="machiningDiaCe2">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="machiningDiaCe2">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Depth of Cut</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="depthDia2" placeholder="L2 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="depthDiaCe2">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="depthDiaCe2">Clear</button>
                 </div>
 
                 <label class="form-label fw-bold">Pitch</label>
                 <div class="input-group mb-2">
                   <input type="number" class="form-control" id="pitch2" placeholder="P2 / mm" step="0.001">
-                  <button type="button" class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce" id="pitchCe2">Clear</button>
+                  <button type="button"
+                    class="btn btn-light btn-sm border-success text-success fw-bold px-5 py-1 btn-ce"
+                    id="pitchCe2">Clear</button>
                 </div>
               </div>
             </div>
@@ -205,7 +317,8 @@
             <div class="row g-3">
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Tool Diameter ØDc</label>
-                <input type="text" class="form-control bg-light" id="toolDiameter" readonly style="cursor:not-allowed;" placeholder="Please Select Tool" oninput="updateSpindleSpeed()">
+                <input type="text" class="form-control bg-light" id="toolDiameter" readonly style="cursor:not-allowed;"
+                  placeholder="Please Select Tool" oninput="updateSpindleSpeed()">
               </div>
 
               <div class="col-md-6 fw-bold">
@@ -215,22 +328,26 @@
 
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Spindle Speed</label>
-                <input type="number" class="form-control" id="n" placeholder="RPM" readonly style="background-color:#d4edda;cursor:not-allowed;" />
+                <input type="number" class="form-control" id="n" placeholder="RPM" readonly
+                  style="background-color:#d4edda;cursor:not-allowed;" />
               </div>
 
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Number of Teeth</label>
-                <input type="number" class="form-control bg-light" style="cursor:not-allowed;" id="z" value="2" readonly oninput="updateFeedRate()" />
+                <input type="number" class="form-control bg-light" style="cursor:not-allowed;" id="z" value="2" readonly
+                  oninput="updateFeedRate()" />
               </div>
 
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Feed per Tooth</label>
-                <input type="number" class="form-control" id="fz" placeholder="mm/tooth" step="0.001" required oninput="updateFeedRate()" />
+                <input type="number" class="form-control" id="fz" placeholder="mm/tooth" step="0.001" required
+                  oninput="updateFeedRate()" />
               </div>
 
               <div class="col-md-6 fw-bold">
                 <label class="form-label">Feed Rate</label>
-                <input type="number" class="form-control" id="vf" placeholder="mm/min" readonly style="background-color:#d4edda;cursor:not-allowed;" />
+                <input type="number" class="form-control" id="vf" placeholder="mm/min" readonly
+                  style="background-color:#d4edda;cursor:not-allowed;" />
               </div>
 
               <hr class="my-4" />
@@ -278,7 +395,8 @@
         <div class="right-pane-sticky">
           <div class="d-flex justify-content-end mb-2">
             <button class="btn btn-secondary me-2 fw-bold" onclick="addTool(); countClick('addTool')">Add Tool</button>
-            <button class="btn btn-primary me-2 fw-bold" onclick="calculateGCode(); countClick('calculate')">Generate</button>
+            <button class="btn btn-primary me-2 fw-bold"
+              onclick="calculateGCode(); countClick('calculate')">Generate</button>
             <button class="btn btn-success me-2 fw-bold" onclick="exportToFile(); countClick('export')">Export</button>
             <button class="btn btn-danger fw-bold" onclick="clearOutput(); countClick('clear')">Clear</button>
           </div>
@@ -324,7 +442,7 @@
       const td = document.getElementById('toolDiameter');
       if (PART_TO_DIAMETER.hasOwnProperty(partNo)) { td.value = PART_TO_DIAMETER[partNo].toFixed(1); }
       else { td.value = ''; }
-      if (typeof updateSpindleSpeed === 'function') { try { updateSpindleSpeed(); } catch (e) {} }
+      if (typeof updateSpindleSpeed === 'function') { try { updateSpindleSpeed(); } catch (e) { } }
     }
 
     function buildExtensionOptions(partNo) {
@@ -431,21 +549,21 @@
   <script>
     // Cutting speed map by series
     const cuttingSpeedMapBySeries = {
-      "99321": { Material01:{vc:120}, Material02:{vc:100}, Material03:{vc:70}, Material04:{vc:60}, Material05:{vc:0}, Material06:{vc:60}, Material07:{vc:70}, Material08:{vc:350}, Material09:{vc:200}, Material10:{vc:20}, Material11:{vc:40}, Material12:{vc:60} },
-      "99323": { Material01:{vc:200}, Material02:{vc:150}, Material03:{vc:120}, Material04:{vc:90}, Material05:{vc:0}, Material06:{vc:90}, Material07:{vc:120}, Material08:{vc:500}, Material09:{vc:400}, Material10:{vc:30}, Material11:{vc:60}, Material12:{vc:90} }
+      "99321": { Material01: { vc: 120 }, Material02: { vc: 100 }, Material03: { vc: 70 }, Material04: { vc: 60 }, Material05: { vc: 0 }, Material06: { vc: 60 }, Material07: { vc: 70 }, Material08: { vc: 350 }, Material09: { vc: 200 }, Material10: { vc: 20 }, Material11: { vc: 40 }, Material12: { vc: 60 } },
+      "99323": { Material01: { vc: 200 }, Material02: { vc: 150 }, Material03: { vc: 120 }, Material04: { vc: 90 }, Material05: { vc: 0 }, Material06: { vc: 90 }, Material07: { vc: 120 }, Material08: { vc: 500 }, Material09: { vc: 400 }, Material10: { vc: 30 }, Material11: { vc: 60 }, Material12: { vc: 90 } }
     };
 
-    function getSelectedPartNo(){
-      const g2=document.getElementById('partsGroup2'); const g1=document.getElementById('partsGroup1');
-      return (g2 && g2.value)? g2.value : (g1 && g1.value)? g1.value : "";
+    function getSelectedPartNo() {
+      const g2 = document.getElementById('partsGroup2'); const g1 = document.getElementById('partsGroup1');
+      return (g2 && g2.value) ? g2.value : (g1 && g1.value) ? g1.value : "";
     }
-    function getSeriesFromPart(partNo){
-      if(/^00-99323-/.test(partNo)) return "99323";
-      if(/^00-99321-/.test(partNo)) return "99321";
+    function getSeriesFromPart(partNo) {
+      if (/^00-99323-/.test(partNo)) return "99323";
+      if (/^00-99321-/.test(partNo)) return "99321";
       return null;
     }
 
-    function updateCuttingSpeed(){
+    function updateCuttingSpeed() {
       const material = document.getElementById("selectMaterial").value;
       const partNo = getSelectedPartNo();
       const series = getSeriesFromPart(partNo) || "99321";
@@ -467,30 +585,30 @@
 
   <script>
     // N & Vf
-    function updateSpindleSpeed(){
-      const d=parseFloat(document.getElementById("toolDiameter").value);
-      const vc=parseFloat(document.getElementById("vc").value);
-      if(!isNaN(d)&&d>0&&!isNaN(vc)&&vc>0){
-        const n=(1000*vc)/(Math.PI*d);
-        document.getElementById("n").value=n.toFixed(0);
-      }else{ document.getElementById("n").value=""; }
+    function updateSpindleSpeed() {
+      const d = parseFloat(document.getElementById("toolDiameter").value);
+      const vc = parseFloat(document.getElementById("vc").value);
+      if (!isNaN(d) && d > 0 && !isNaN(vc) && vc > 0) {
+        const n = (1000 * vc) / (Math.PI * d);
+        document.getElementById("n").value = n.toFixed(0);
+      } else { document.getElementById("n").value = ""; }
       updateFeedRate();
       if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
     }
-    function updateFeedRate(){
-      const z=parseFloat(document.getElementById("z").value);
-      const fz=parseFloat(document.getElementById("fz").value);
-      const n=parseFloat(document.getElementById("n").value);
-      if(!isNaN(z)&&!isNaN(fz)&&!isNaN(n)&&z>0&&fz>0&&n>0){
-        const vf=n*fz*z;
-        document.getElementById("vf").value=vf.toFixed(2);
-      }else{ document.getElementById("vf").value=""; }
+    function updateFeedRate() {
+      const z = parseFloat(document.getElementById("z").value);
+      const fz = parseFloat(document.getElementById("fz").value);
+      const n = parseFloat(document.getElementById("n").value);
+      if (!isNaN(z) && !isNaN(fz) && !isNaN(n) && z > 0 && fz > 0 && n > 0) {
+        const vf = n * fz * z;
+        document.getElementById("vf").value = vf.toFixed(2);
+      } else { document.getElementById("vf").value = ""; }
     }
   </script>
 
   <script>
     // Add/Clear/Export
-    function addTool(){
+    function addTool() {
       const toolNo = document.getElementById("toolNo").value || '99';
       const spindleSpeed = document.getElementById("n").value || '';
       const gcode = [
@@ -506,209 +624,253 @@
       const sys = (document.getElementById("gcode").value || 'G54').trim();
       document.getElementById("result").value += gcode + `\n${sys} (啟用工件座標系；Activate work offset)\n\n`;
     }
-    function clearOutput(){ document.getElementById("result").value=""; }
+    function clearOutput() { document.getElementById("result").value = ""; }
 
-    function exportToFile(){
-      const content = document.getElementById("result").value || '';
+    function exportToFile() {
+      // 目前輸出的 NC 內容
+      const resultEl = document.getElementById("result");
+      let content = (resultEl?.value || "");
+      if (content && !content.endsWith('\n')) content += '\n';
+
+      // 收尾代碼（依你指定的順序）
+      const footer = [
+        'M05                 (主軸停止；Spindle stop)',
+        'M09                 (關閉切削液；Coolant OFF)',
+        'G91 G28 Z0.         (相對座標回Z原點；Incremental return to machine Z home)',
+        'G91 G28 Y0.         (相對座標回Y原點；Incremental return to machine Y home)',
+        'M30                 (程式結束並回到起點；End of program and rewind)'
+      ].join('\n');
+
+      content += footer + '\n';
+
+      // 檔名：帶模式與時間戳
       const mode = (window.currentMode || 'Mode1');
-      const ts = new Date().toISOString().replaceAll(':','-').replaceAll('.','-');
-      const blob = new Blob([content], {type:"text/plain"});
-      const a=document.createElement("a");
-      a.href=URL.createObjectURL(blob);
-      a.download=`NC_Helix_Drill_${mode}_${ts}.txt`;
+      const ts = new Date().toISOString().replace(/[:.]/g, '-');
+
+      const blob = new Blob([content], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `NC_Helix_Drill_${mode}_${ts}.txt`;
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(a.href);
+
+      // 清理
+      setTimeout(() => {
+        URL.revokeObjectURL(a.href);
+        document.body.removeChild(a);
+      }, 0);
     }
 
-    function countClick(){ /* no-op */ }
-    function updatePassInputs(){ /* no-op */ }
+
+    function countClick() { /* no-op */ }
+    function updatePassInputs() { /* no-op */ }
   </script>
 
   <script>
     // fz blinking hint
-    (function(){
-      const fz=document.getElementById('fz'); let timer=null;
-      function shouldBlinkFz(){
-        const fzVal=parseFloat(fz.value); const isFzMissing=isNaN(fzVal)||fzVal<=0;
-        const vc=parseFloat(document.getElementById('vc').value);
-        const d=parseFloat(document.getElementById('toolDiameter').value);
-        const n=parseFloat(document.getElementById('n').value);
-        const hasVcAndD=!isNaN(vc)&&vc>0&&!isNaN(d)&&d>0; const hasN=!isNaN(n)&&n>0;
+    (function () {
+      const fz = document.getElementById('fz'); let timer = null;
+      function shouldBlinkFz() {
+        const fzVal = parseFloat(fz.value); const isFzMissing = isNaN(fzVal) || fzVal <= 0;
+        const vc = parseFloat(document.getElementById('vc').value);
+        const d = parseFloat(document.getElementById('toolDiameter').value);
+        const n = parseFloat(document.getElementById('n').value);
+        const hasVcAndD = !isNaN(vc) && vc > 0 && !isNaN(d) && d > 0; const hasN = !isNaN(n) && n > 0;
         return isFzMissing && (hasVcAndD || hasN);
       }
-      function startBlink(){ if(timer) return; timer=setInterval(()=>fz.classList.toggle('blink'),650); }
-      function stopBlink(){ if(timer){ clearInterval(timer); timer=null; } fz.classList.remove('blink'); }
-      function syncFzBlink(){ if(shouldBlinkFz()) startBlink(); else stopBlink(); }
-      window.syncFzBlink=syncFzBlink;
+      function startBlink() { if (timer) return; timer = setInterval(() => fz.classList.toggle('blink'), 650); }
+      function stopBlink() { if (timer) { clearInterval(timer); timer = null; } fz.classList.remove('blink'); }
+      function syncFzBlink() { if (shouldBlinkFz()) startBlink(); else stopBlink(); }
+      window.syncFzBlink = syncFzBlink;
       fz.addEventListener('input', syncFzBlink);
       document.addEventListener('DOMContentLoaded', syncFzBlink);
       window.addEventListener('pageshow', syncFzBlink);
-      document.addEventListener('visibilitychange', ()=>{ if(document.hidden) stopBlink(); else syncFzBlink(); });
+      document.addEventListener('visibilitychange', () => { if (document.hidden) stopBlink(); else syncFzBlink(); });
     })();
   </script>
 
   <script>
     // Clear fields for both groups
-    document.addEventListener('DOMContentLoaded', ()=>{
-      function clearField(id){
-        const el=document.getElementById(id); if(!el) return;
-        el.value=''; el.dispatchEvent(new Event('input',{bubbles:true}));
-        if (typeof updateSpindleSpeed==='function') updateSpindleSpeed();
-        if (typeof window.syncFzBlink==='function') window.syncFzBlink();
+    document.addEventListener('DOMContentLoaded', () => {
+      function clearField(id) {
+        const el = document.getElementById(id); if (!el) return;
+        el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true }));
+        if (typeof updateSpindleSpeed === 'function') updateSpindleSpeed();
+        if (typeof window.syncFzBlink === 'function') window.syncFzBlink();
         el.focus();
       }
-      const pairs=[
-        ['preBoreCe1','preBore1'], ['machiningDiaCe1','machiningDia1'], ['depthDiaCe1','depthDia1'], ['pitchCe1','pitch1'],
-        ['preBoreCe2','preBore2'], ['machiningDiaCe2','machiningDia2'], ['depthDiaCe2','depthDia2'], ['pitchCe2','pitch2'],
+      const pairs = [
+        ['preBoreCe1', 'preBore1'], ['machiningDiaCe1', 'machiningDia1'], ['depthDiaCe1', 'depthDia1'], ['pitchCe1', 'pitch1'],
+        ['preBoreCe2', 'preBore2'], ['machiningDiaCe2', 'machiningDia2'], ['depthDiaCe2', 'depthDia2'], ['pitchCe2', 'pitch2'],
       ];
-      pairs.forEach(([btnId,fieldId])=>{
-        const btn=document.getElementById(btnId);
-        if(btn) btn.addEventListener('click',()=>clearField(fieldId));
+      pairs.forEach(([btnId, fieldId]) => {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.addEventListener('click', () => clearField(fieldId));
       });
     });
   </script>
 
   <!-- Mode switching + G-code generation by mode -->
   <script>
-    const imagesByMode={
-      Mode1:"https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg",
-      Mode2:"https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.02.jpg",
-      Mode3:"https://picsum.photos/300/200?random=41"
+    const imagesByMode = {
+      Mode1: "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.01.jpg",
+      Mode2: "https://nine9.jic-tools.com.tw/upload_files/technology/NC_Helix_Drill/icon_helix_fig.02.jpg",
+      Mode3: "https://picsum.photos/300/200?random=41"
     };
-    const imgEl=document.getElementById("galleryImg");
-    const modeBtns=document.querySelectorAll(".mode-btn");
-    const group1=document.getElementById("group1");
-    const group2=document.getElementById("group2");
 
-    // keep current mode
-    let currentMode='Mode1';
+    // 新增：Mode 說明文字
+    const modeDescriptions = {
+      Mode1: "On solid surface, Helical interpolation",
+      Mode2: "On solid surface, 1st hole/2nd: Helical interpolation",
+      Mode3: "Pre-holed, enlarge hole/2nd, ZigZag method"
+    };
 
-    function setMode(mode){
-      currentMode=mode;
-      imgEl.src=imagesByMode[mode]||"";
-      modeBtns.forEach(b=>{
-        const active=(b.dataset.mode===mode);
-        b.classList.toggle("btn-primary",active);
-        b.classList.toggle("btn-outline-primary",!active);
-        b.classList.toggle("active",active);
+    const imgEl = document.getElementById("galleryImg");
+    const modeBtns = document.querySelectorAll(".mode-btn");
+    const group1 = document.getElementById("group1");
+    const group2 = document.getElementById("group2");
+
+    // ★ 記住目前模式
+    let currentMode = 'Mode1';
+
+    function setMode(mode) {
+      currentMode = mode; // 更新目前模式
+      imgEl.src = imagesByMode[mode] || "";
+      modeBtns.forEach(b => {
+        const active = (b.dataset.mode === mode);
+        b.classList.toggle("btn-primary", active);
+        b.classList.toggle("btn-outline-primary", !active);
+        b.classList.toggle("active", active);
       });
-      const showSecond=(mode==="Mode2");
-      group2.classList.toggle("d-none",!showSecond);
-      if(showSecond){
+      const showSecond = (mode === "Mode2");
+      group2.classList.toggle("d-none", !showSecond);
+      if (showSecond) {
         group1.classList.remove("col-12"); group1.classList.add("col-md-6");
-      }else{
+      } else {
         group1.classList.remove("col-md-6"); group1.classList.add("col-12");
-        ["preBore2","machiningDia2","depthDia2","pitch2"].forEach(id=>{
-          const el=document.getElementById(id);
-          if(el){ el.value=""; el.dispatchEvent(new Event("input",{bubbles:true})); }
+        ["preBore2", "machiningDia2", "depthDia2", "pitch2"].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) { el.value = ""; el.dispatchEvent(new Event("input", { bubbles: true })); }
         });
       }
+
+      // 新增：更新卡片底部說明
+      const hint = document.getElementById("modeHint");
+      if (hint) hint.textContent = modeDescriptions[mode] || "";
     }
-    modeBtns.forEach(btn=>btn.addEventListener("click",()=>setMode(btn.dataset.mode)));
+
+    modeBtns.forEach(btn => btn.addEventListener("click", () => setMode(btn.dataset.mode)));
     setMode("Mode1");
+
   </script>
 
   <script>
     // Generate G-code by mode (with Chinese comments explaining purpose)
-    function calculateGCode(modeOverride){
+    function calculateGCode(modeOverride) {
       const mode = modeOverride || currentMode || document.querySelector('.mode-btn.active')?.dataset.mode || 'Mode1';
-      const out=[]; const result=document.getElementById('result');
+      const out = []; const result = document.getElementById('result');
 
       // helpers
-      const num=id=>{ const el=document.getElementById(id); if(!el) return null; const v=parseFloat(el.value); return isNaN(v)?null:v; };
-      const txt=id=>(document.getElementById(id)?.value ?? "").trim();
-      const fmt=(v,dec=3)=>(v==null||isNaN(v))?'-':(+v).toFixed(dec);
-      const pushBlk=lines=>lines.forEach(l=>out.push(l));
+      const num = id => { const el = document.getElementById(id); if (!el) return null; const v = parseFloat(el.value); return isNaN(v) ? null : v; };
+      const txt = id => (document.getElementById(id)?.value ?? "").trim();
+      const fmt = (v, dec = 3) => (v == null || isNaN(v)) ? '-' : (+v).toFixed(dec);
+      const pushBlk = lines => lines.forEach(l => out.push(l));
 
       // basics
       const toolNo = txt('toolNo') || '99';
-      const sys    = txt('gcode') || 'G54';
-      const x0     = num('x') ?? 0;
-      const y0     = num('y') ?? 0;
-      const zsafe  = num('zsafe') ?? 20;
-      const zsurf  = num('zsurface') ?? 0;
+      const sys = txt('gcode') || 'G54';
+      const x0 = num('x') ?? 0;
+      const y0 = num('y') ?? 0;
+      const zsafe = num('zsafe') ?? 20;
+      const zsurf = num('zsurface') ?? 0;
 
-      const Dc     = num('toolDiameter');
-      const Vc     = num('vc');
-      const N      = num('n');
+      const Dc = num('toolDiameter');
+      const Vc = num('vc');
+      const N = num('n');
       const Zteeth = num('z');
-      const Fz     = num('fz');
-      let   Vf     = num('vf');
-      if((Vf==null||isNaN(Vf)) && N && Fz && Zteeth){ Vf=N*Fz*Zteeth; }
+      const Fz = num('fz');
+      let Vf = num('vf');
+      if ((Vf == null || isNaN(Vf)) && N && Fz && Zteeth) { Vf = N * Fz * Zteeth; }
 
       out.push(`(=== NC Helix Drill / ${mode} ===)`);
-      out.push(`(Tool Dc=${fmt(Dc,3)} mm, Vc=${fmt(Vc,1)} m/min, N=${fmt(N,0)} rpm, z=${fmt(Zteeth,0)}, fz=${fmt(Fz,3)} mm/tooth, Vf=${fmt(Vf,1)} mm/min)`);
+      out.push(`(Tool Dc=${fmt(Dc, 3)} mm, Vc=${fmt(Vc, 1)} m/min, N=${fmt(N, 0)} rpm, z=${fmt(Zteeth, 0)}, fz=${fmt(Fz, 3)} mm/tooth, Vf=${fmt(Vf, 1)} mm/min)`);
 
-      out.push(`${sys} G00 X${fmt(x0,3)} Y${fmt(y0,3)} (啟用座標系並快速移至孔中心XY；Activate work offset & rapid to XY)`);
-      out.push(`G43 H${toolNo} Z${fmt(zsafe,3)} (啟用刀長補正並升至安全高度；Tool length comp & move to safe Z)`);
+      out.push(`${sys} G00 X${fmt(x0, 3)} Y${fmt(y0, 3)} (啟用座標系並快速移至孔中心XY；Activate work offset & rapid to XY)`);
+      out.push(`G43 H${toolNo} Z${fmt(zsafe, 3)} (啟用刀長補正並升至安全高度；Tool length comp & move to safe Z)`);
 
       // build one helix section
-      function buildHelixSection(label, machiningDia, depth, pitch, prebore){
-        const block=[];
-        if(machiningDia==null || depth==null || pitch==null){
+      function buildHelixSection(label, machiningDia, depth, pitch, prebore) {
+        const block = [];
+        if (machiningDia == null || depth == null || pitch == null) {
           block.push(`(WARN) ${label}: missing required fields, skipped.`);
           return block;
         }
-        if(!Dc){
+        if (!Dc) {
           block.push(`(WARN) ${label}: unknown tool diameter (Dc), skipped.`);
           return block;
         }
 
-        const R=(machiningDia - Dc)/2;               // toolpath radius from center
-        const steps=Math.max(1, Math.ceil(depth/pitch));
-        const effPitch=depth/steps;                   // last step auto-equalized
+        const R = (machiningDia - Dc) / 2;               // toolpath radius from center
+        const steps = Math.max(1, Math.ceil(depth / pitch));
+        const effPitch = depth / steps;                   // last step auto-equalized
 
         block.push(`(--- ${label} ---)`);
-        block.push(`(Target Ø=${fmt(machiningDia,3)}; Depth L=${fmt(depth,3)}; Pitch=${fmt(pitch,3)}; R=${fmt(R,3)})`);
-        block.push(`G00 Z${fmt(zsurf+2,3)} (快速接近工面上方2mm；Approach above surface)`);
+        block.push(`(Target Ø=${fmt(machiningDia, 3)}; Depth L=${fmt(depth, 3)}; Pitch=${fmt(pitch, 3)}; R=${fmt(R, 3)})`);
+        block.push(`G00 Z${fmt(zsurf + 2, 3)} (快速接近工面上方2mm；Approach above surface)`);
 
-        if(R>0.0001){
+        if (R > 0.0001) {
           // move to start point at X+R, and touch the surface
-          block.push(`G01 X${fmt(x0+R,3)} Z${fmt(zsurf,3)} F${fmt(Vf||200,1)} (到起刀點並接觸工面；Feed to start point & surface)`);
+          block.push(`G01 X${fmt(x0 + R, 3)} Z${fmt(zsurf, 3)} F${fmt(Vf || 200, 1)} (到起刀點並接觸工面；Feed to start point & surface)`);
 
           // step-down helix (one circle per step)
-          let currentZ=zsurf;
-          for(let i=1;i<=steps;i++){
+          let currentZ = zsurf;
+          for (let i = 1; i <= steps; i++) {
             currentZ -= effPitch;
-            block.push(`G03 I${fmt(-R,3)} Z${fmt(currentZ,3)} F${fmt(Vf||200,1)} (逆時針螺旋下切至Z；CCW circular rampus down to Z)`);
+            block.push(`G03 I${fmt(-R, 3)} Z${fmt(currentZ, 3)} F${fmt(Vf || 200, 1)} (逆時針螺旋下切至Z；CCW circular ramping down to Z)`);
           }
-        }else{
+        } else {
           // straight plunge drilling
           block.push(`(NOTE) R<=0，改為直下鑽削；Fallback to drilling)`);
-          block.push(`G01 Z${fmt(zsurf,3)} F${fmt(Vf||200,1)} (到工面；To surface)`);
-          block.push(`G01 Z${fmt(zsurf - depth,3)} F${fmt(Vf||200,1)} (直下到目標深度；Plunge to depth)`);
+          block.push(`G01 Z${fmt(zsurf, 3)} F${fmt(Vf || 200, 1)} (到工面；To surface)`);
+          block.push(`G01 Z${fmt(zsurf - depth, 3)} F${fmt(Vf || 200, 1)} (直下到目標深度；Plunge to depth)`);
         }
 
         // exit
-        block.push(`G03 I${fmt(-R,3)} F${fmt(Vf||200,1)} (完成一圈使刀路回到起點；Finish circle to start)`);
-        block.push(`G00 Z${fmt(zsafe,3)} (快速退刀至安全高度；Retract to safe Z)`);
+        // 完成最後一圈（同一Z，整圓收尾）
+        block.push(`G03 I${fmt(-R, 3)} F${fmt(Vf || 200, 1)}  (整圓一圈；Finish one circle at depth)`);
+
+        // 回到孔中心後再退刀（注意這裡要同時帶 X 與 Y，且用 fmt()）
+        block.push(`G01 X${fmt(x0, 3)} Y${fmt(y0, 3)} F${fmt(Vf || 200, 1)}  (回到孔中心；Return to hole center)`);
+
+        // 退刀至安全高度
+        block.push(`G00 Z${fmt(zsafe, 3)}  (快速退刀至安全高度；Retract to safe Z)`);
         return block;
       }
 
-      if(mode==='Mode1'){
-        const prebore1=num('preBore1');
-        const d1=num('machiningDia1');
-        const L1=num('depthDia1');
-        const P1=num('pitch1');
+      if (mode === 'Mode1') {
+        const prebore1 = num('preBore1');
+        const d1 = num('machiningDia1');
+        const L1 = num('depthDia1');
+        const P1 = num('pitch1');
         pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
 
-      }else if(mode==='Mode2'){
-        const prebore1=num('preBore1'); const d1=num('machiningDia1'); const L1=num('depthDia1'); const P1=num('pitch1');
-        const prebore2=num('preBore2'); const d2=num('machiningDia2'); const L2=num('depthDia2'); const P2=num('pitch2');
+      } else if (mode === 'Mode2') {
+        const prebore1 = num('preBore1'); const d1 = num('machiningDia1'); const L1 = num('depthDia1'); const P1 = num('pitch1');
+        const prebore2 = num('preBore2'); const d2 = num('machiningDia2'); const L2 = num('depthDia2'); const P2 = num('pitch2');
         pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
         pushBlk(buildHelixSection('Group2', d2, L2, P2, prebore2));
 
-      }else if(mode==='Mode3'){
+      } else if (mode === 'Mode3') {
         out.push(`(Mode3 reserved)`);
-      }else{
+      } else {
         out.push(`(Error) Unknown mode: ${mode}`);
       }
 
       out.push(`(=== End ===)`);
 
-      if(result.value && !result.value.endsWith('\n')) result.value+='\n';
+      if (result.value && !result.value.endsWith('\n')) result.value += '\n';
       result.value += out.join('\n') + '\n\n';
-      result.scrollTop=result.scrollHeight;
+      result.scrollTop = result.scrollHeight;
     }
   </script>
 
@@ -717,14 +879,19 @@
     <div class="container py-5">
       <div class="row gy-4 align-items-start">
         <div class="col-12 col-md-6 col-lg-3 text-center">
-          <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer_logo.png" alt="JIMMORE" class="footer-logo mb-3 mx-auto d-block">
+          <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer_logo.png"
+            alt="JIMMORE" class="footer-logo mb-3 mx-auto d-block">
           <div class="badge-row mb-3">
-            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_01.png" alt="SGS">
-            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_02.png" alt="SGS">
-            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_03.png" alt="UKAS">
+            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_01.png"
+              alt="SGS">
+            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_02.png"
+              alt="SGS">
+            <img src="https://nine9.jic-tools.com.tw/upload_files/technology/NC_Program/Jimmore_footer-iso_03.png"
+              alt="UKAS">
           </div>
           <a href="#" target="_blank" rel="noopener">
-            <img src="https://www.jic-tools.com.tw/themes/jictools2/images/Jimmore-footer-iso_2.png" alt="D-U-N-S Certified" class="duns-img">
+            <img src="https://www.jic-tools.com.tw/themes/jictools2/images/Jimmore-footer-iso_2.png"
+              alt="D-U-N-S Certified" class="duns-img">
           </a>
         </div>
 
@@ -741,7 +908,8 @@
           <p class="small mb-2">
             TEL: <a href="tel:+886422605352" class="link-light text-decoration-none">+886-4-22605352</a><br>
             FAX: +886-4-22608765<br>
-            E-mail: <a href="mailto:trade@jimmore.com.tw" class="link-light text-decoration-none">trade@jimmore.com.tw</a>
+            E-mail: <a href="mailto:trade@jimmore.com.tw"
+              class="link-light text-decoration-none">trade@jimmore.com.tw</a>
           </p>
         </div>
 
@@ -756,7 +924,8 @@
       </div>
     </div>
 
-    <script>document.getElementById('year').textContent=(new Date()).getFullYear();</script>
+    <script>document.getElementById('year').textContent = (new Date()).getFullYear();</script>
   </footer>
 </body>
+
 </html>
