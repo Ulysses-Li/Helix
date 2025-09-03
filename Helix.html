@@ -497,7 +497,7 @@
         `G90 (設定絕對座標；Absolute programming)`,
         `G17 (選擇XY平面；Select XY plane)`,
         `G21 (單位毫米；Units in mm)`,
-        `G49 (取消刀長補正；Cancel tool length comp)`,
+        `G49 (取消刀長補正；Cancel tool length offset)`,
         `G80 (取消固定循環；Cancel canned cycles)`,
         `T${toolNo} M06 (換刀；Tool change)`,
         `S${spindleSpeed} M03 (主軸正轉；Spindle CW)`,
@@ -670,7 +670,7 @@
           let currentZ=zsurf;
           for(let i=1;i<=steps;i++){
             currentZ -= effPitch;
-            block.push(`G03 I${fmt(-R,3)} Z${fmt(currentZ,3)} F${fmt(Vf||200,1)} (逆時針螺旋下切至Z；CCW helix down to Z)`);
+            block.push(`G03 I${fmt(-R,3)} Z${fmt(currentZ,3)} F${fmt(Vf||200,1)} (逆時針螺旋下切至Z；CCW circular rampus down to Z)`);
           }
         }else{
           // straight plunge drilling
