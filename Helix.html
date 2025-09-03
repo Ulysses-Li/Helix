@@ -852,13 +852,13 @@
         const d1 = num('machiningDia1');
         const L1 = num('depthDia1');
         const P1 = num('pitch1');
-        pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
+        pushBlk(buildHelixSection('Mode1', d1, L1, P1, prebore1));
 
       } else if (mode === 'Mode2') {
         const prebore1 = num('preBore1'); const d1 = num('machiningDia1'); const L1 = num('depthDia1'); const P1 = num('pitch1');
         const prebore2 = num('preBore2'); const d2 = num('machiningDia2'); const L2 = num('depthDia2'); const P2 = num('pitch2');
-        pushBlk(buildHelixSection('Group1', d1, L1, P1, prebore1));
-        pushBlk(buildHelixSection('Group2', d2, L2, P2, prebore2));
+        pushBlk(buildHelixSection('Mode2_Step1', d1, L1, P1, prebore1));
+        pushBlk(buildHelixSection('Mode2_Step2', d2, L2, P2, prebore2));
 
       } else if (mode === 'Mode3') {
         out.push(`(Mode3 reserved)`);
